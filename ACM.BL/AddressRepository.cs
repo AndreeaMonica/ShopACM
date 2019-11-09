@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class AddressRepository
+    public class AddressRepository 
     {
         public Address Retrieve(int addressId)
         {
@@ -55,7 +55,29 @@ namespace ACM.BL
 
         public bool Save(Address address)
         {
-            return true;
+            //Code that saves the defined product
+            var success = true;
+
+            if (address.HasChanges)
+            {
+                if (address.IsValid)
+                {
+                    if (address.IsNew)
+                    {
+                        //Called an Insert Stored Procedure
+                    }
+                    else
+                    {
+                        //Called an Update Stores Procedure
+                    }
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+            return success;
         }
+
     }
 }

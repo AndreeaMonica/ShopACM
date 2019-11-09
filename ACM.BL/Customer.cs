@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acme.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ACM.BL
 {
-    public class Customer :EntityBase
+    public class Customer : EntityBase, ILoggable
     {
         //Constructor chaining - one constructor needs to call another constructor
-        public Customer() :this(0)
+        public Customer() : this(0)
         {
-                
+
         }
         public Customer(int customerId)
         {
@@ -52,8 +53,22 @@ namespace ACM.BL
 
             if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
             if (string.IsNullOrWhiteSpace(EmailAddress)) isValid = false;
-            
+
             return isValid;
         }
+
+        //public string Log() 
+        //{
+        //    var logString = CustomerId + ": " + 
+        //        FullName + " " + "Email: " + 
+        //        EmailAddress + "Status: " + 
+        //        EntityState.ToString();
+
+        //    return logString;
+        //}
+
+        public string Log() => 
+            $"{CustomerId}: {FullName} Email: {EmailAddress} Status: {EntityState.ToString()}";
+
     }
 }
